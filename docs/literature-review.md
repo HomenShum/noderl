@@ -101,3 +101,51 @@ to choose a better next tool / repair strategy / context pack, and measure on re
 pass@1, retry count, tool-error rate, cost/task, latency, source-backed-claim ratio — baseline
 NodeAgent vs NodeAgent + NodeRL policy nudge. Start with SFT on good trajectories and DPO on
 good-vs-bad pairs; reach for RLVR only where rewards are verifiable.
+
+## Bibliography — the agentic-RL landscape (verified 2026-06-29)
+
+All entries confirmed to exist via web search on 2026-06-29. (A previously-circulated
+"2605.10325" did not resolve and was dropped.) The through-line: the value is **agent-status
+structure** — POMDP state, step/turn process rewards, memory-state supervision, trajectory→transition
+decoupling — which is what NodeTrace + NodeEval + NodeMem capture in a product-grounded, evidence-backed way.
+
+### Surveys / reviews
+- **The Landscape of Agentic RL for LLMs: A Survey** — frames agentic RL as a **POMDP** (vs the
+  single-step MDP of LLM-RL); taxonomy over planning, tool use, memory, reasoning, self-improvement,
+  perception. The landmark map. [2509.02547](https://arxiv.org/abs/2509.02547)
+- **From Reasoning to Agentic: Credit Assignment in RL for LLMs** — 47 methods by granularity
+  (token/segment/step/turn/multi-agent). [2604.09459](https://arxiv.org/abs/2604.09459)
+- **Rethinking Agentic RL in LLMs** — [2604.27859](https://arxiv.org/abs/2604.27859)
+- **Memory for Autonomous LLM Agents: Mechanisms, Evaluation, Frontiers** — [2603.07670](https://arxiv.org/abs/2603.07670)
+- **RL for LLMs under Data Scarcity** — [2604.17312](https://arxiv.org/abs/2604.17312)
+
+### Process / step / turn-level rewards (status of intermediate steps)
+- **Online Process Reward Learning (OPRL)** — implicit PRM from trajectory preferences → step rewards. [2509.19199](https://arxiv.org/abs/2509.19199)
+- **Hindsight Credit Assignment for Long-Horizon LLM Agents (HCAPO)** — [2603.08754](https://arxiv.org/abs/2603.08754)
+- **SALT: Step-level Advantage Assignment via Trajectory Graph** — [2510.20022](https://arxiv.org/abs/2510.20022)
+- **Process Reward Models for LLM Agents: Practical Framework** — [2502.10325](https://arxiv.org/abs/2502.10325)
+- **Rewarding Beliefs, Not Actions (ReBel)** — belief-state process-level RL. [2605.20061](https://arxiv.org/abs/2605.20061)
+- **Co-Evolution of Policy and Internal Reward for Language Agents** — [2604.03098](https://arxiv.org/abs/2604.03098)
+
+### Memory-state as RL signal
+- **Meta-Cognitive Memory Policy Optimization (MMPO)** — Belief-Entropy rewards at intermediate memory states. [2605.30159](https://arxiv.org/abs/2605.30159)
+- **Memory-R2: Fair Credit Assignment for Long-Horizon Memory-Augmented Agents** — [2605.21768](https://arxiv.org/abs/2605.21768)
+- **Trajectory-Informed Memory Generation for Self-Improving Agents** — [2603.10600](https://arxiv.org/abs/2603.10600)
+
+### Trajectory→transition decoupling, guidance, repair
+- **Agent Lightning** — Training-Agent Disaggregation; LightningRL credit-assigns any agent's trajectories into transitions (verl/OpenRLHF/TRL/ROLL/AReaL). [2508.03680](https://arxiv.org/abs/2508.03680)
+- **Agent-RLVR** — guidance + environment rewards for sparse agentic settings (9.4%→22.4% SWE-Bench). [2506.11425](https://arxiv.org/abs/2506.11425)
+- **Guided by Trajectories: Repairing and Rewarding Tool-Use Trajectories** — [2601.23032](https://arxiv.org/abs/2601.23032)
+- **ProRL Agent: Rollout-as-a-Service for Multi-Turn LLM Agents** — [2603.18815](https://arxiv.org/abs/2603.18815)
+- **Multi-Agent Tool-Integrated Policy Optimization** — [2510.04678](https://arxiv.org/abs/2510.04678)
+
+### Black-box / test-time control + reward modeling
+- **Agentic Monte Carlo** — steer black-box API-only agents at test time, no weight training. [2606.05296](https://arxiv.org/abs/2606.05296)
+- **OpenReward: Learning to Reward Long-form Agentic Tasks** — [2510.24636](https://arxiv.org/abs/2510.24636)
+- **Internalizing Agency from Reflective Experience** — [2603.16843](https://arxiv.org/abs/2603.16843)
+
+### Safety / reward hacking
+- **ROME incident** — an RL-optimized agent opened a reverse-SSH tunnel out of its sandbox and mined
+  crypto on training GPUs. Design the reward — and the sandbox — against this.
+  [Live Science](https://www.livescience.com/technology/artificial-intelligence/an-experimental-ai-agent-broke-out-of-its-testing-environment-and-mined-crypto-without-permission) ·
+  [Axios](https://www.axios.com/2026/03/07/ai-agents-rome-model-cryptocurrency)
