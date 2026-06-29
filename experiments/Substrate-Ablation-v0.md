@@ -55,6 +55,15 @@ with the relevant substrate directories/files moved out (not edited), so the dif
 exactly the substrate layer and nothing else. Record the strip manifest (which paths were removed per
 arm) as a receipt.
 
+**Arm isolation is a first-class, recorded knob.** Each arm declares its isolation as one of
+`current_workspace | branch | worktree | sandbox` (vocabulary adopted from looper's `execution.isolation`
+— Kevin Simback, [github.com/ksimback/looper](https://github.com/ksimback/looper), MIT; see
+[`docs/looper-foraging.md`](../docs/looper-foraging.md) A4), and that arm label is written onto each
+run's `NodeTrajectory.initialState`. This is not cosmetic: recording the arm *on the trajectory*
+(rather than flipping a deployment-global env var) is what prevents the isolation bug that silently made
+an earlier A/B run only the one variant — the arm becomes per-run data the scorer can verify, not a
+global mode that can desync.
+
 ## 4. The task set
 
 - **N ≥ 10 held-out tasks** drawn from the BankerToolBench-style corpus already referenced in

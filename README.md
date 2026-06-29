@@ -28,7 +28,8 @@ Goal → Act → Observe → Evaluate → Reward → Remember → Repair → Exp
 
 - **NodeTrace** — a framework-free trajectory recorder: browser + PDF actions, per-step
   screenshots, normalized bounding boxes, extracted-field evidence, honest error status.
-  ~80% extracted from a production capture pipeline; reward/cost/JSONL fields are being added.
+  ~80% extracted from a production capture pipeline; the `(s,a,o,r)` trajectory exporter (per-step
+  reward/cost → JSONL) now ships via the `./trajectory` subpath.
 - **NodeMem** — deterministic memory: rule-based `compileEpisode` + multi-factor ranked
   retrieval (`rankFacts`/`planRetrieval`). Pure functions, no DB lock-in.
 - **NodeEval** — the `walkthrough-review` CLI + MCP server (capture → render → media judge →
@@ -36,7 +37,7 @@ Goal → Act → Observe → Evaluate → Reward → Remember → Repair → Exp
 
 ## What's coming
 
-- RL trajectory export: per-step `reward` + `cost`, `episode_id`/`step_index` → JSONL.
+- Durable Convex recording of trajectory streams (the `(s,a,o,r)` exporter ships today — see above; persisting the stream to the ledger is next).
 - Failure-pattern replay store (the type exists; persistence is net-new).
 - A re-run NodeMem recall benchmark with per-variant isolation.
 
@@ -57,7 +58,7 @@ reusable artifacts are the **proof-receipt contract** (`spec/proof-receipt-contr
 
 | Package | What it is | Maturity |
 |---|---|---|
-| [`packages/nodetrace`](packages/nodetrace) | Trajectory / evidence recorder | core extracted, +RL fields pending |
+| [`packages/nodetrace`](packages/nodetrace) | Trajectory / evidence recorder + `(s,a,o,r)` exporter | core extracted; exporter shipped (tsc-clean + 5-scenario test) |
 | [`packages/nodemem`](packages/nodemem) | Replay / context memory | core pure, +failure-store pending |
 | [`packages/nodeeval`](packages/nodeeval) | Reward builder + visual/video judges + proof schema | walkthrough CLI standalone; judge contract pending |
 
@@ -71,7 +72,8 @@ reusable artifacts are the **proof-receipt contract** (`spec/proof-receipt-contr
 - [`spec/reward-design.md`](spec/reward-design.md)
 - [`spec/proof-receipt-contract.md`](spec/proof-receipt-contract.md)
 - [`spec/anti-cheat-doctrine.md`](spec/anti-cheat-doctrine.md)
-- [`docs/thesis.md`](docs/thesis.md) · [`docs/literature-review.md`](docs/literature-review.md) · [`docs/exists-vs-net-new.md`](docs/exists-vs-net-new.md)
+- [`spec/manifest-lint.md`](spec/manifest-lint.md) — author-time lint for NODE-LOOPS.md (patterns foraged from looper, MIT)
+- [`docs/thesis.md`](docs/thesis.md) · [`docs/literature-review.md`](docs/literature-review.md) · [`docs/exists-vs-net-new.md`](docs/exists-vs-net-new.md) · [`docs/looper-foraging.md`](docs/looper-foraging.md)
 - Experiments: [`experiments/NodeRL-BTB-ToolPolicy-v0.md`](experiments/NodeRL-BTB-ToolPolicy-v0.md) — the narrow first run (inputs, action space, reward, baseline-vs-nudge harness) · [`experiments/Substrate-Ablation-v0.md`](experiments/Substrate-Ablation-v0.md) — the 3-arm within-repo test of whether NODE-LOOPS.md + memory/graph/OKF substrates actually help an agent self-improve
 - Loop manifest: [`NODE-LOOPS.md`](NODE-LOOPS.md) — this repo's self-improving loop (spec: [`spec/node-loops.md`](spec/node-loops.md)). Companion to CLAUDE.md; one per agent-loop repo, grounded in that repo's real context.
 
@@ -79,6 +81,9 @@ reusable artifacts are the **proof-receipt contract** (`spec/proof-receipt-contr
 
 - **Solo Founder Agent Builder** (`github.com/HomenShum/solo-founder-nodes`) — the curriculum +
   repair loop that *generates* the trajectories NodeRL records, scores, and trains on.
+- **looper** (`github.com/ksimback/looper`, MIT, Kevin Simback) — a complementary loop-**design**
+  coach. looper DESIGNS the loop; NODE-LOOPS.md DECLARES it; NodeRL RUNS/RECORDS/REWARDS it. Patterns
+  foraged into our stack (with attribution) are catalogued in [`docs/looper-foraging.md`](docs/looper-foraging.md).
 
 ## License
 

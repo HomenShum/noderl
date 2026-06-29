@@ -45,6 +45,7 @@ interface NodeTrajectory {
   outputs: { files: string[]; receipts: string[]; screenshots: string[]; videos: string[] };
   rewards?: NodeRewardSummary;     // see reward-design.md
   truncated?: boolean;
+  error?: string;                  // HONEST_STATUS: verbatim CaptureResult.error, preserved on failure; absent on success, never synthesized
 }
 
 interface NodeTraceStep extends CaptureStep {
@@ -60,8 +61,25 @@ interface NodeTraceStep extends CaptureStep {
 
 ## Export
 
+The exporter lives in [`packages/nodetrace/src/trajectory.ts`](../packages/nodetrace/src/trajectory.ts)
+(net-new, hand-maintained — **not** in `MANIFEST.json` and **not** wired through the generated
+`index.ts`, so a re-extract can't clobber it; exposed via the package `"./trajectory"` subpath). Three
+pure functions:
+
+- `toTrajectory(capture, meta)` — maps a `CaptureResult` → `NodeTrajectory`: sequential `stepIndex`,
+  deterministic ids, per-step process reward + cost, and (HONEST_STATUS) a failure trajectory with
+  `error` preserved + `truncated` set when the capture failed.
+- `summarizeReward(...)` — carries the caller-supplied reward components verbatim; anything unsupplied
+  is `0` **and** labeled `unscored:<field>` (never a hardcoded floor); `failureCategories` derived only
+  from honest signals.
+- `toJSONL(trajectories)` — one trajectory per line, **stable (sorted) key order** so identical input
+  serializes byte-identically, and screenshot bytes are **never** inlined (a defensive `stableReplace`
+  backstops the strip). Empty input → `""`.
+
 `nodetrace` serializes `NodeTrajectory[]` to **JSONL**, one trajectory per line, for downstream
-SFT / DPO-pair / RLVR pipelines. Screenshots are referenced by path, not inlined.
+SFT / DPO-pair / RLVR pipelines. Screenshots are referenced by path, not inlined. Verified 2026-06-29:
+`tsc -p tsconfig.packages.json` clean + a 5-scenario test (happy / honest-failure / determinism /
+no-leak / unscored-honesty) green.
 
 ## Design notes
 
