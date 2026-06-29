@@ -72,7 +72,7 @@ reusable artifacts are the **proof-receipt contract** (`spec/proof-receipt-contr
 - [`spec/proof-receipt-contract.md`](spec/proof-receipt-contract.md)
 - [`spec/anti-cheat-doctrine.md`](spec/anti-cheat-doctrine.md)
 - [`docs/thesis.md`](docs/thesis.md) · [`docs/literature-review.md`](docs/literature-review.md) · [`docs/exists-vs-net-new.md`](docs/exists-vs-net-new.md)
-- Experiment: [`experiments/NodeRL-BTB-ToolPolicy-v0.md`](experiments/NodeRL-BTB-ToolPolicy-v0.md) — the narrow first run (inputs, action space, reward, baseline-vs-nudge harness)
+- Experiments: [`experiments/NodeRL-BTB-ToolPolicy-v0.md`](experiments/NodeRL-BTB-ToolPolicy-v0.md) — the narrow first run (inputs, action space, reward, baseline-vs-nudge harness) · [`experiments/Substrate-Ablation-v0.md`](experiments/Substrate-Ablation-v0.md) — the 3-arm within-repo test of whether NODE-LOOPS.md + memory/graph/OKF substrates actually help an agent self-improve
 - Loop manifest: [`NODE-LOOPS.md`](NODE-LOOPS.md) — this repo's self-improving loop (spec: [`spec/node-loops.md`](spec/node-loops.md)). Companion to CLAUDE.md; one per agent-loop repo, grounded in that repo's real context.
 
 ## Related
