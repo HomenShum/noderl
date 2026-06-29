@@ -139,6 +139,26 @@ decoupling — which is what NodeTrace + NodeEval + NodeMem capture in a product
 - **ProRL Agent: Rollout-as-a-Service for Multi-Turn LLM Agents** — [2603.18815](https://arxiv.org/abs/2603.18815)
 - **Multi-Agent Tool-Integrated Policy Optimization** — [2510.04678](https://arxiv.org/abs/2510.04678)
 
+### Self-improving: inner-loop rollout + outer-loop meta-optimizer
+The **inner loop** observes the agent's rollout (steps / results / judge verdicts); the **outer
+loop** edits the agent's reward, prompts, tools, hyperparameters, or training data from those traces.
+When the outer loop is itself a code-editing agent, you get self-modification:
+- **HyperAgents** — task agent + meta agent in one editable program; the meta-agent rewrites the
+  *improvement mechanism* itself. [2603.19461](https://arxiv.org/abs/2603.19461)
+- **Darwin Gödel Machine (DGM)** — self-improving agent that rewrites its own code; evolutionary
+  lineage of variants (SWE-bench 20%→50%). [2505.22954](https://arxiv.org/abs/2505.22954)
+- **A Survey of Self-Evolving Agents (what / when / how / where to evolve)** — the outer-loop
+  taxonomy. [2507.21046](https://arxiv.org/abs/2507.21046)
+- **Self-Evolving Recommendation (dual-loop)** — Offline Agent = inner loop (Think-Code-Verify),
+  Online Agent = outer loop (validate vs north-star metrics). [2602.10226](https://arxiv.org/abs/2602.10226)
+- **EvolveR: Self-Evolving Agents through an Experience-Driven Lifecycle** — [2510.16079](https://arxiv.org/abs/2510.16079)
+- **MemSkill: Learning and Evolving Memory Skills** — [2602.02474](https://arxiv.org/abs/2602.02474)
+
+> In NodeRL terms: **NodeTrace** is the inner-loop observer; **NodeEval + NodeMem + the loop runner**
+> are the outer-loop optimizer. This is the cluster a production self-improving loop anchors best —
+> e.g. an inner task agent + judge whose traces an outer code-editing agent uses to improve the
+> inner agent's tools, prompts, and compaction/evaluation between runs.
+
 ### Black-box / test-time control + reward modeling
 - **Agentic Monte Carlo** — steer black-box API-only agents at test time, no weight training. [2606.05296](https://arxiv.org/abs/2606.05296)
 - **OpenReward: Learning to Reward Long-form Agentic Tasks** — [2510.24636](https://arxiv.org/abs/2510.24636)
