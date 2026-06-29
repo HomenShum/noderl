@@ -71,7 +71,7 @@ reusable artifacts are the **proof-receipt contract** (`spec/proof-receipt-contr
 - [`spec/reward-design.md`](spec/reward-design.md)
 - [`spec/proof-receipt-contract.md`](spec/proof-receipt-contract.md)
 - [`spec/anti-cheat-doctrine.md`](spec/anti-cheat-doctrine.md)
-- [`docs/thesis.md`](docs/thesis.md) · [`docs/exists-vs-net-new.md`](docs/exists-vs-net-new.md)
+- [`docs/thesis.md`](docs/thesis.md) · [`docs/literature-review.md`](docs/literature-review.md) · [`docs/exists-vs-net-new.md`](docs/exists-vs-net-new.md)
 
 ## Related
 

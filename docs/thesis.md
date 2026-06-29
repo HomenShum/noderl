@@ -1,5 +1,14 @@
 # NodeRL — thesis
 
+## Agent-status traces, not token traces
+
+Most agent tracing is **token-centric**: prompt, completion, tokens, latency, tool-call JSON — what
+the model *said*. Agentic RL needs **agent-status traces**: `state → action → observation → reward →
+next_state` — what the *system did* and whether it *worked* (UI state, tool events, source evidence,
+artifact mutations, judge verdicts, cost). NodeTrace records the latter, so a run becomes a replay
+buffer, a reward source, a failure-memory substrate, and — later — SFT/DPO/RLVR data. Full positioning
++ verified citations: [literature-review.md](literature-review.md).
+
 ## The reframe
 
 Most teams attempting agentic RL are missing the *environment* and the *reward*, not the model.
