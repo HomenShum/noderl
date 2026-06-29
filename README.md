@@ -72,6 +72,7 @@ reusable artifacts are the **proof-receipt contract** (`spec/proof-receipt-contr
 - [`spec/proof-receipt-contract.md`](spec/proof-receipt-contract.md)
 - [`spec/anti-cheat-doctrine.md`](spec/anti-cheat-doctrine.md)
 - [`docs/thesis.md`](docs/thesis.md) · [`docs/literature-review.md`](docs/literature-review.md) · [`docs/exists-vs-net-new.md`](docs/exists-vs-net-new.md)
+- Experiment: [`experiments/NodeRL-BTB-ToolPolicy-v0.md`](experiments/NodeRL-BTB-ToolPolicy-v0.md) — the narrow first run (inputs, action space, reward, baseline-vs-nudge harness)
 
 ## Related
 
