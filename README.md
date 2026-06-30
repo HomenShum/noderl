@@ -73,6 +73,8 @@ reusable artifacts are the **proof-receipt contract** (`spec/proof-receipt-contr
 - [`spec/proof-receipt-contract.md`](spec/proof-receipt-contract.md)
 - [`spec/anti-cheat-doctrine.md`](spec/anti-cheat-doctrine.md)
 - [`spec/manifest-lint.md`](spec/manifest-lint.md) — author-time lint for NODE-LOOPS.md (patterns foraged from looper, MIT)
+- [`spec/prove-before-claim.md`](spec/prove-before-claim.md) — the agent-side honesty gate: documented failure signals (proxy-vs-ground-truth) + the PROVE-BEFORE-CLAIM gate the loop enforces
+- [`.claude/skills/proof-looping/SKILL.md`](.claude/skills/proof-looping/SKILL.md) — the portable proof-looping skill (8-phase handoff; drop into any repo)
 - [`docs/thesis.md`](docs/thesis.md) · [`docs/literature-review.md`](docs/literature-review.md) · [`docs/exists-vs-net-new.md`](docs/exists-vs-net-new.md) · [`docs/looper-foraging.md`](docs/looper-foraging.md)
 - Experiments: [`experiments/NodeRL-BTB-ToolPolicy-v0.md`](experiments/NodeRL-BTB-ToolPolicy-v0.md) — the narrow first run (inputs, action space, reward, baseline-vs-nudge harness) · [`experiments/Substrate-Ablation-v0.md`](experiments/Substrate-Ablation-v0.md) — the 3-arm within-repo test of whether NODE-LOOPS.md + memory/graph/OKF substrates actually help an agent self-improve
 - Loop manifest: [`NODE-LOOPS.md`](NODE-LOOPS.md) — this repo's self-improving loop (spec: [`spec/node-loops.md`](spec/node-loops.md)). Companion to CLAUDE.md; one per agent-loop repo, grounded in that repo's real context.
